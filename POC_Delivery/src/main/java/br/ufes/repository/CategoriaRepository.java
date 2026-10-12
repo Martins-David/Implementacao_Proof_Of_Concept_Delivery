@@ -1,6 +1,7 @@
 package br.ufes.repository;
 
 import br.ufes.model.Categoria;
+import br.ufes.service.ValidadorAtributos;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -13,46 +14,44 @@ public class CategoriaRepository implements ICategoriaRepository {
     // private ProdutoRepository produtos;
 
     public CategoriaRepository(List<Categoria> categorias) {
-        validarListaDeCategorias(categorias);
+        ValidadorAtributos.validarCategoria(categorias);
 
         this.categorias = categorias;
     }
 
     @Override
     public void salvar(List<Categoria> categorias) {
-        validarListaDeCategorias(categorias);
+        ValidadorAtributos.validarCategoria(categorias);
         this.categorias.addAll(categorias);
 
     }
 
     @Override
-    public List<Categoria> buscarCategoriaPorID(Long idCategoria) {
-        validarIdCategoria(idCategoria);
+    public Categoria buscarCategoriaPorID(Long idCategoria) {
+        ValidadorAtributos.validarId(idCategoria);
 
-        List<Categoria> categoriasEncontradas = new ArrayList<>();
         for (Categoria categoria : categorias) {
             if (Objects.equals(categoria.getIdCategoria(), idCategoria)) {
-                categoriasEncontradas.add(categoria);
+                return categoria;
             }
         }
 
-        return categoriasEncontradas;
+        throw new IllegalArgumentException("Não foi encontrado nenhuma categoria com o id informado.");
+
     }
 
     @Override
-    public List<Categoria> buscarCategoriaPorNome(String nomeCategoria) {
+    public Categoria buscarCategoriaPorNome(String nomeCategoria) {
 
-        validarNome(nomeCategoria);
-      
-        List<Categoria> categoriasEncontradas = new ArrayList<>();
+        ValidadorAtributos.validarNome(nomeCategoria);
 
         for (Categoria categoria : categorias) {
             if (Objects.equals(categoria.getNome().trim().toLowerCase(), nomeCategoria.trim().toLowerCase())) {
-                categoriasEncontradas.add(categoria);
+                return categoria;
             }
         }
+        throw new IllegalArgumentException("Não foi encontrado nenhuma categoria com o nome informado.");
 
-        return categoriasEncontradas;
     }
 
     @Override
@@ -109,14 +108,9 @@ public class CategoriaRepository implements ICategoriaRepository {
         }
     }
 
-    
-    
     /*
     private boolean existeAssociacaoProduto(){
               //    faz algo para verificar se há produtos cadastrados nessa categoria
         }
      */
-    
-    
-    
 }

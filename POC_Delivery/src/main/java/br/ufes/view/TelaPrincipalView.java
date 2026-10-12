@@ -8,14 +8,14 @@ import javax.swing.JMenuItem;
 
 /**
  *
- * @author PC
+ * @author paulo.campos
  */
 public class TelaPrincipalView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaPrincipalView.class.getName());
 
     /**
-     * Creates new form TelaPrincipal
+     * Creates new form TelaPrincipalView
      */
     public TelaPrincipalView() {
         initComponents();
@@ -30,46 +30,46 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBarTelaPrincipal = new javax.swing.JMenuBar();
-        jMenuDados = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuTelaPrincipal = new javax.swing.JMenu();
         menuItmIncluirProdutos = new javax.swing.JMenuItem();
         menuItmBuscarProdutos = new javax.swing.JMenuItem();
         menuItmCategorias = new javax.swing.JMenuItem();
-        menuItemCalcularMargemLucro = new javax.swing.JMenuItem();
+        menuItmCalcMargLucro = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jMenuItem1.setText("jMenuItem1");
 
-        jMenuDados.setText("Dados");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        menuTelaPrincipal.setText("Dados");
 
         menuItmIncluirProdutos.setText("Incluir produtos");
         menuItmIncluirProdutos.addActionListener(this::menuItmIncluirProdutosActionPerformed);
-        jMenuDados.add(menuItmIncluirProdutos);
-        menuItmIncluirProdutos.getAccessibleContext().setAccessibleName("Incluir produtos");
-        menuItmIncluirProdutos.getAccessibleContext().setAccessibleDescription("");
+        menuTelaPrincipal.add(menuItmIncluirProdutos);
 
-        menuItmBuscarProdutos.setText("Buscar Produtos");
-        jMenuDados.add(menuItmBuscarProdutos);
+        menuItmBuscarProdutos.setText("Buscar produtos");
+        menuTelaPrincipal.add(menuItmBuscarProdutos);
 
         menuItmCategorias.setText("Categorias");
-        jMenuDados.add(menuItmCategorias);
+        menuTelaPrincipal.add(menuItmCategorias);
 
-        menuItemCalcularMargemLucro.setText("Calcular margem de lucro");
-        jMenuDados.add(menuItemCalcularMargemLucro);
+        menuItmCalcMargLucro.setText("Calcular margem de lucro");
+        menuTelaPrincipal.add(menuItmCalcMargLucro);
 
-        jMenuBarTelaPrincipal.add(jMenuDados);
-        jMenuDados.getAccessibleContext().setAccessibleName("jMenuDados");
+        jMenuBar1.add(menuTelaPrincipal);
 
-        setJMenuBar(jMenuBarTelaPrincipal);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 828, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGap(0, 277, Short.MAX_VALUE)
         );
 
         pack();
@@ -82,43 +82,23 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaPrincipalView().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBarTelaPrincipal;
-    private javax.swing.JMenu jMenuDados;
-    private javax.swing.JMenuItem menuItemCalcularMargemLucro;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem menuItmBuscarProdutos;
+    private javax.swing.JMenuItem menuItmCalcMargLucro;
     private javax.swing.JMenuItem menuItmCategorias;
     private javax.swing.JMenuItem menuItmIncluirProdutos;
+    private javax.swing.JMenu menuTelaPrincipal;
     // End of variables declaration//GEN-END:variables
-
-    public JMenuItem getMenuItemCalcularMargemLucro() {
-        return menuItemCalcularMargemLucro;
-    }
 
     public JMenuItem getMenuItmBuscarProdutos() {
         return menuItmBuscarProdutos;
+    }
+
+    public JMenuItem getMenuItmCalcMargLucro() {
+        return menuItmCalcMargLucro;
     }
 
     public JMenuItem getMenuItmCategorias() {
@@ -128,10 +108,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     public JMenuItem getMenuItmIncluirProdutos() {
         return menuItmIncluirProdutos;
     }
+    
+    
 
-
-
-
-
-
+    
 }

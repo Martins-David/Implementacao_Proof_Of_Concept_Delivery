@@ -7,7 +7,7 @@ import java.util.List;
 public interface IProdutoRepository {
     
    void salvar(List<Produto> produto);
-   List<Produto> buscarProdutoPorId (Long idProduto);
+   Produto buscarProdutoPorId (Long idProduto);
    List<Produto> buscarProdutoPorNome (String nomeProduto);
    List<Produto> buscarProdutoPorCategoria(String nomeCategoria);
    List<Produto> listarTodos();

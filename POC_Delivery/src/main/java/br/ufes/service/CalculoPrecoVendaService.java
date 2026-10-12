@@ -3,10 +3,10 @@ package br.ufes.service;
 import br.ufes.model.Produto;
 import java.util.Objects;
 
-public class CalculadoraPrecoVendaService {
+public class CalculoPrecoVendaService {
     private Produto produto;
     
-    public CalculadoraPrecoVendaService(Produto produto){
+    public CalculoPrecoVendaService(Produto produto){
         Objects.requireNonNull(produto, "O produto deve ser não nulo.");
         
         this.produto = produto;

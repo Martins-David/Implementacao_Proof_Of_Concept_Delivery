@@ -1,4 +1,4 @@
-package br.ufes.presenterState;
+package br.ufes.presenterState.ProdutoPresenterState;
 
 import br.ufes.presenter.HistoricoPrecoPresenter;
 import br.ufes.presenter.ProdutoPresenter;

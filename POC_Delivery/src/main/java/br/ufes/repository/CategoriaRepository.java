@@ -27,6 +27,27 @@ public class CategoriaRepository implements ICategoriaRepository {
     }
 
     @Override
+    public void atualizar(Categoria categoriaAtualizada) {
+        Objects.requireNonNull(categoriaAtualizada,
+                "A categoria não pode ser nula.");
+
+        for (int i = 0; i < categorias.size(); i++) {
+            Categoria categoria = categorias.get(i);
+
+            if (categoria.getIdCategoria()
+                    == categoriaAtualizada.getIdCategoria()) {
+
+                categorias.set(i, categoriaAtualizada);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException(
+                "Categoria não encontrada para atualização."
+        );
+    }
+
+    @Override
     public Categoria buscarCategoriaPorID(Long idCategoria) {
         ValidadorAtributos.validarId(idCategoria);
 
@@ -79,7 +100,7 @@ public class CategoriaRepository implements ICategoriaRepository {
 
     private void verificarExistencia(long id) throws Exception {
         for (Categoria categoria : categorias) {
-             if (categoria.getIdCategoria() == id) {
+            if (categoria.getIdCategoria() == id) {
                 return;
             }
         }

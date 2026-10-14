@@ -1,4 +1,4 @@
-package br.ufes.presenterState;
+package br.ufes.presenterState.ProdutoPresenterState;
 
 import br.ufes.exception.RegraNegocioException;
 import br.ufes.model.Categoria;
@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class EdicaoProdutoPresenterState extends ProdutoPresenterState {
-    
+
     public EdicaoProdutoPresenterState(ProdutoPresenter presenter) {
         super(presenter);
         this.presenter.getView().getTxtNomeProduto().setEditable(true);
@@ -51,8 +51,8 @@ public class EdicaoProdutoPresenterState extends ProdutoPresenterState {
         produto.setNome(nome);
         produto.setPrecoCusto(precoCusto);
         produto.setCategoria(categoria);
-
-        this.presenter.getProdutoRepository().salvar(List.of(produto));
+        
+        this.presenter.getProdutoRepository().atualizar(produto);
 
         JOptionPane.showMessageDialog(this.presenter.getView(), "Item salvo com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         this.presenter.setEstado(new VisualizacaoProdutoPresenterState(this.presenter));

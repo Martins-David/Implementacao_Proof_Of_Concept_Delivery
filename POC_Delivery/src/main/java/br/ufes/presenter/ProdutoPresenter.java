@@ -2,8 +2,8 @@ package br.ufes.presenter;
 
 import br.ufes.model.Categoria;
 import br.ufes.model.Produto;
-import br.ufes.presenterState.EdicaoProdutoPresenterState;
-import br.ufes.presenterState.InclusaoProdutoPresenterState;
+import br.ufes.presenterState.ProdutoPresenterState.EdicaoProdutoPresenterState;
+import br.ufes.presenterState.ProdutoPresenterState.InclusaoProdutoPresenterState;
 
 import br.ufes.repository.ICategoriaRepository;
 import br.ufes.repository.IHistoricoPrecoRepository;
@@ -11,8 +11,8 @@ import br.ufes.repository.IProdutoRepository;
 
 import br.ufes.view.ProdutoView;
 
-import br.ufes.presenterState.ProdutoPresenterState;
-import br.ufes.presenterState.VisualizacaoProdutoPresenterState;
+import br.ufes.presenterState.ProdutoPresenterState.ProdutoPresenterState;
+import br.ufes.presenterState.ProdutoPresenterState.VisualizacaoProdutoPresenterState;
 import br.ufes.service.CalculadoraPrecoVendaService;
 
 import java.awt.event.ActionEvent;
@@ -51,6 +51,7 @@ public class ProdutoPresenter {
         this.calculadoraPrecoVendaService = calculadoraPrecoVendaService;
 
         this.produto = produto;
+        this.view = new ProdutoView();
 
         carregarComboCategorias();
         preencherDadosProduto();
@@ -65,7 +66,6 @@ public class ProdutoPresenter {
             this.estado = new InclusaoProdutoPresenterState(this);
         }
 
-        this.view = new ProdutoView();
     }
 
     public void carregarComboCategorias() {

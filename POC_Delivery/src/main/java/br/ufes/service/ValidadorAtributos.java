@@ -24,7 +24,11 @@ public class ValidadorAtributos {
     }
 
     public static final void validarCategoria(List<Categoria> categorias) {
-
+        
+        Objects.requireNonNull(categorias, "O produto é obrigatório.");
+        if (categorias.isEmpty()) {
+            throw new IllegalArgumentException("Informe uma lista com pelo menos um produto.");
+        }
     }
 
     public static final void validarPercentualLucro(double percentualLucro) {

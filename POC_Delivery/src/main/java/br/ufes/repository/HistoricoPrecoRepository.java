@@ -13,15 +13,16 @@ public class HistoricoPrecoRepository implements IHistoricoPrecoRepository {
     private List<HistoricoPreco> historicos;
 
     public HistoricoPrecoRepository(List<HistoricoPreco> historicos) {
-        ValidadorAtributos.validarHistoricoPreco(historicos);
+        Objects.requireNonNull(historicos, "A lista de historicos não pode ser nula.");
+        
         this.historicos = historicos;
     }
 
     @Override
-    public void salvar(List<HistoricoPreco> historicos) {
-        ValidadorAtributos.validarHistoricoPreco(historicos);
+    public void salvar(List<HistoricoPreco> historicosNovos) {
+        ValidadorAtributos.validarHistoricoPreco(historicosNovos);
 
-        this.historicos.addAll(historicos);
+        this.historicos.addAll(historicosNovos);
     }
 
     @Override

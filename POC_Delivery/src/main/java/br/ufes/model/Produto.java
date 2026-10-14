@@ -102,6 +102,14 @@ public class Produto {
     public double getPrecoVendaAtual(){
         return Double.valueOf(Math.round(((precoCusto) * ( 1 + (getPercentualLucro()/100)))*100)/100);
     }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "idProduto=" + idProduto + ", nome=" + nome + ", precoCusto=" + precoCusto + ", categoria=" + categoria + '}';
+    }
+    
+    
+    
     
     
 }

@@ -91,16 +91,41 @@ public class BuscaProdutoView extends javax.swing.JFrame {
 
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id do Produto", "Nome do Produto", "Preço de Custo", "Categoria", "Margem de Lucro (%)", "Preço de Venda"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblProdutos.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tblProdutos);
+        tblProdutos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        if (tblProdutos.getColumnModel().getColumnCount() > 0) {
+            tblProdutos.getColumnModel().getColumn(0).setHeaderValue("Id do Produto");
+            tblProdutos.getColumnModel().getColumn(1).setHeaderValue("Nome do Produto");
+            tblProdutos.getColumnModel().getColumn(2).setHeaderValue("Preço de Custo");
+            tblProdutos.getColumnModel().getColumn(3).setHeaderValue("Categoria");
+            tblProdutos.getColumnModel().getColumn(4).setHeaderValue("Margem de Lucro (%)");
+            tblProdutos.getColumnModel().getColumn(5).setHeaderValue("Preço de Venda");
+        }
 
         btnNovo.setText("Novo");
         btnNovo.addActionListener(this::btnNovoActionPerformed);
@@ -201,8 +226,6 @@ public class BuscaProdutoView extends javax.swing.JFrame {
     public JComboBox<String> getCmbBoxBuscar() {
         return cmbBoxBuscar;
     }
-
-    
 
     public JTable getTblProdutos() {
         return tblProdutos;

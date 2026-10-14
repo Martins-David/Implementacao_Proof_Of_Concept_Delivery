@@ -40,6 +40,7 @@ public class MainPresenter {
     }
 
     public void configurarView() {
+        
         this.view.getMenuItmIncluirProdutos().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

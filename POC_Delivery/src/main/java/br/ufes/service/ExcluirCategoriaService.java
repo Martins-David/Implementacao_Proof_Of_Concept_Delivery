@@ -35,7 +35,7 @@ public class ExcluirCategoriaService {
     private void verificarAssociacaoCategoriaProduto(Long idCategoria) {
         for(Produto produto: produtos.listarTodos()){
             if(Objects.equals(produto.getCategoria().getIdCategoria(), idCategoria)){
-                throw new RegraNegocioException("O id " + idCategoria +" já está sendo utilizado.");
+                throw new RegraNegocioException("A categoria está associada ao(s) produto(s) : " +  produto + " Faça a exclusão do(s) produto(s) antes de excluir a categoria.");
             }
         }
         

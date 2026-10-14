@@ -66,6 +66,11 @@ public class ProdutoPresenter {
             this.estado = new InclusaoProdutoPresenterState(this);
         }
 
+        configurarListeners();
+
+        this.view.setLocationRelativeTo(null);
+        this.view.setVisible(true);
+
     }
 
     public void carregarComboCategorias() {

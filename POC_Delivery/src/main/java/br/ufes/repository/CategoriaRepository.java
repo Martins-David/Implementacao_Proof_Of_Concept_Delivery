@@ -11,25 +11,23 @@ import java.util.Objects;
 public class CategoriaRepository implements ICategoriaRepository {
 
     private List<Categoria> categorias;
-    // private ProdutoRepository produtos;
 
     public CategoriaRepository(List<Categoria> categorias) {
-        ValidadorAtributos.validarCategoria(categorias);
+        Objects.requireNonNull(categorias, "A lista de categorias não pode ser nula.");
 
         this.categorias = categorias;
     }
 
     @Override
-    public void salvar(List<Categoria> categorias) {
-        ValidadorAtributos.validarCategoria(categorias);
-        this.categorias.addAll(categorias);
+    public void salvar(List<Categoria> categoriasNovas) {
+        ValidadorAtributos.validarCategoria(categoriasNovas);
+        this.categorias.addAll(categoriasNovas);
 
     }
 
     @Override
     public void atualizar(Categoria categoriaAtualizada) {
-        Objects.requireNonNull(categoriaAtualizada,
-                "A categoria não pode ser nula.");
+        ValidadorAtributos.validarCategoria(List.of(categoriaAtualizada));
 
         for (int i = 0; i < categorias.size(); i++) {
             Categoria categoria = categorias.get(i);

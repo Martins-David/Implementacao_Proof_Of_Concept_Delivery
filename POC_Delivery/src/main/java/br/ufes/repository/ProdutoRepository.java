@@ -14,23 +14,23 @@ public class ProdutoRepository implements IProdutoRepository {
     private List<Produto> produtos;
 
     public ProdutoRepository(List<Produto> produtos) {
-        ValidadorAtributos.validarListaProdutos(produtos);
+        
+        Objects.requireNonNull(produtos, "A lista de poodutos não pode ser nula.");
         this.produtos = produtos;
     }
 
     @Override
-    public void salvar(List<Produto> produto) {
+    public void salvar(List<Produto> produtosNovos) {
 
-        ValidadorAtributos.validarListaProdutos(produtos);
+        ValidadorAtributos.validarListaProdutos(produtosNovos);
 
-        this.produtos.addAll(produto);
+        this.produtos.addAll(produtosNovos);
 
     }
 
     @Override
     public void atualizar(Produto produtoAtualizado) {
-        Objects.requireNonNull(produtoAtualizado,
-                "O produto não pode ser nulo.");
+        ValidadorAtributos.validarListaProdutos(List.of(produtoAtualizado));
 
         for (int i = 0; i < produtos.size(); i++) {
             Produto produto = produtos.get(i);

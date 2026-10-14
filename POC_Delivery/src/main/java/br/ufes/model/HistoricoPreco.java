@@ -45,6 +45,14 @@ public class HistoricoPreco {
     public double getPrecoVendaResultante() {
         return this.precoVendaResultante;
     }
+
+    @Override
+    public String toString() {
+        return "HistoricoPreco{" + "data=" + data + ", produto=" + produto + ", percentualLucroUtilizado=" + percentualLucroUtilizado + ", precoVendaResultante=" + precoVendaResultante + '}';
+    }
+    
+    
+    
     
     
     

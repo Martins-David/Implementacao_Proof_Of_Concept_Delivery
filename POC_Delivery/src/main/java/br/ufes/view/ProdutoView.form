@@ -31,11 +31,19 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="290" max="32767" attributes="0"/>
                       <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnFechar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnVisualizarHistoricoPrecos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -46,10 +54,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlProduto" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="156" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnVisualizarHistoricoPrecos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="115" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnFechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
@@ -151,18 +163,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbCategoriaProduto">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_CodeGeneration" type="java.lang.Integer" value="1"/>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="ProdutoView_cmbCategoriaProduto"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Categoria&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -190,6 +194,24 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnEditar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVisualizarHistoricoPrecos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Visualizar hist&#xf3;rico de pre&#xe7;os"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCancelar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

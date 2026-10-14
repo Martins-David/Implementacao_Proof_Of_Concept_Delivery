@@ -79,7 +79,7 @@ public class CategoriaRepository implements ICategoriaRepository {
 
     private void verificarExistencia(long id) throws Exception {
         for (Categoria categoria : categorias) {
-            if (categoria.getIdCategoria() == id) {
+             if (categoria.getIdCategoria() == id) {
                 return;
             }
         }
@@ -87,30 +87,4 @@ public class CategoriaRepository implements ICategoriaRepository {
         throw new Exception("Categoria não encontrada para o id: " + id);
     }
 
-    private void validarListaDeCategorias(List<Categoria> categorias) {
-        Objects.requireNonNull(categorias, "Informe uma lista não nula de categorias.");
-        if (categorias.isEmpty()) {
-            throw new IllegalArgumentException("Informe uma lista com pelo menos uma categoria.");
-        }
-    }
-
-    private void validarIdCategoria(Long idCategoria) {
-        Objects.requireNonNull(idCategoria, "Informe um codigo identificador não nulo.");
-        if (idCategoria <= 0) {
-            throw new IllegalArgumentException("O id do produto deve ser maior que zero.");
-        }
-    }
-
-    private void validarNome(String nome) {
-        Objects.requireNonNull(nome, "Informe um nome não nulo.");
-        if (nome.isBlank()) {
-            throw new IllegalArgumentException("Informe um nome não vazio.");
-        }
-    }
-
-    /*
-    private boolean existeAssociacaoProduto(){
-              //    faz algo para verificar se há produtos cadastrados nessa categoria
-        }
-     */
 }

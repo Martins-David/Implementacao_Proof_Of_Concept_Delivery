@@ -13,9 +13,6 @@ import br.ufes.repository.IProdutoRepository;
 import static br.ufes.service.PrazoCalculoServiceMock.FORMATO_DATA;
 import static br.ufes.service.PrazoCalculoServiceMock.INTERVALO_MINIMO_DIAS;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -63,18 +60,13 @@ public class CalculadoraPrecoVendaService {
 
         for (Produto produto : produtoRepository.listarTodos()) {
             double percentual = produto.getCategoria().getPercentualLucro();
-            double precoVenda = calcularPrecoVenda(produto.getPrecoCusto(), percentual);
+            double precoVenda = produto.getPrecoVendaAtual();
             historicos.add(new HistoricoPreco(dataCalculo, produto, percentual, precoVenda));
         }
 
         return historicos;
     }
-
-    public double calcularPrecoVenda(double precoCusto, double percentualLucro) {
-
-        return (precoCusto) * ( 1 + (percentualLucro/100));
-    }
-
+    
     // Datas
     private void validarIntervalo(LocalDate dataCalculo) {
         Optional<LocalDate> ultimoCalculo = buscarDataUltimoCalculo();

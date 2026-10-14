@@ -1,74 +1,78 @@
 package br.ufes.presenter;
 
-import model.Produto;
-import repositorio.CategoriaRepository;
-import repositorio.HistoricoPrecoRepository;
-import repositorio.ICategoriaRepository;
-import repositorio.IHistoricoPrecoRepository;
-import repositorio.IProdutoRepository;
-import repositorio.ProdutoRepository;
-import seeder.Seeder;
-import service.CalculoPrecoService;
-import service.CategoriaService;
-import service.ProdutoService;
+import br.ufes.repository.ICategoriaRepository;
+import br.ufes.repository.IHistoricoPrecoRepository;
+import br.ufes.repository.IProdutoRepository;
+import br.ufes.service.CalculadoraPrecoVendaService;
+import br.ufes.view.TelaPrincipalView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
 
-/**
- *
- * @author paulo.campos
- */
 public class MainPresenter {
-
-    private final ICategoriaRepository categoriaRepository;
-    private final IProdutoRepository produtoRepository;
-    private final IHistoricoPrecoRepository historicoPrecoRepository;
     
-    private final CategoriaService categoriaService;
-    private final ProdutoService produtoService;
-    private final CalculoPrecoService calculoPrecoService;
+    private final TelaPrincipalView view;
+    private final ICategoriaRepository categorias;
+    private final IProdutoRepository produtos;
+    private final IHistoricoPrecoRepository historicos;
+    private final CalculadoraPrecoVendaService calculadoraPrecoVendaService;
+    
+    public MainPresenter(
+            IProdutoRepository produtos,
+            ICategoriaRepository categorias,
+            IHistoricoPrecoRepository historicos,
+            CalculadoraPrecoVendaService calculadoraPrecoVendaService
+            ){
+        Objects.requireNonNull(produtos, "Informe um repositório não nulo de produtos.");
+        Objects.requireNonNull(categorias, "Informe um repositório não nulo de categorias.");
+        Objects.requireNonNull(historicos, "Informe um repositório não nulo de historicos de preço.");
+        Objects.requireNonNull(calculadoraPrecoVendaService, "Informe uma calculadora não nula.");
 
-    public MainPresenter() {
-        this.categoriaRepository = new CategoriaRepository();
-        this.produtoRepository = new ProdutoRepository();
-        this.historicoPrecoRepository = new HistoricoPrecoRepository();
         
-        this.categoriaService = new CategoriaService(categoriaRepository, produtoRepository);
-        this.produtoService = new ProdutoService(produtoRepository, categoriaRepository);
-        this.calculoPrecoService = new CalculoPrecoService(produtoRepository, categoriaRepository, historicoPrecoRepository);
-    }
-
-    public void iniciar() {
-        // Executa o Seeder antes de exibir a primeira tela (Requisito 8)
-        new Seeder(categoriaService, produtoService, calculoPrecoService).executar();
         
-        // Abre a Tela Principal
-        new TelaPrincipalPresenter(this);
+        this.produtos = produtos;
+        this.categorias = categorias;
+        this.historicos = historicos;
+        this.calculadoraPrecoVendaService = calculadoraPrecoVendaService;
+        
+        
+        this.view = new TelaPrincipalView();
+        
+        configurarView();
+        
     }
+    
+    
+    public void configurarView(){
+        this.view.getMenuItmIncluirProdutos().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ProdutoPresenter(produtos, categorias, historicos,calculadoraPrecoVendaService, null, false);
+            }
+        });
 
-    public void abrirIncluirProdutos() {
-        new ProdutoPresenter(this, produtoService, categoriaRepository, historicoPrecoRepository);
-    }
+        this.view.getMenuItmBuscarProdutos().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new BuscarProdutoPresenter(produtos, categorias, historicos);
+            }
+        });
 
-    public void abrirEditarProduto(Produto produto) {
-        new ProdutoPresenter(this, produtoService, categoriaRepository, historicoPrecoRepository, produto);
-    }
+        this.view.getMenuItmCategorias().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CategoriaPresenter(categorias);
+            }
+        });
 
-    public void abrirBuscarProdutos() {
-        new BuscaProdutoPresenter(this, produtoRepository, historicoPrecoRepository);
+        this.view.getMenuItmCalcMargLucro().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CalculoMargemPresenter(calculadoraPrecoVendaService);
+            }
+        });
     }
-
-    public void abrirVisualizarProduto(Produto produto) {
-        new ProdutoVisualizacaoPresenter(this, produto, categoriaRepository, historicoPrecoRepository);
-    }
-
-    public void abrirHistoricoPreco(Produto produto) {
-        new HistoricoPrecoPresenter(this, produto, historicoPrecoRepository);
-    }
-
-    public void abrirCategorias() {
-        new CategoriaPresenter(this, categoriaService);
-    }
-
-    public void abrirCalculoMargemLucro() {
-        new CalculoMargemLucroPresenter(this, calculoPrecoService);
-    }
+    
+    
+    
 }

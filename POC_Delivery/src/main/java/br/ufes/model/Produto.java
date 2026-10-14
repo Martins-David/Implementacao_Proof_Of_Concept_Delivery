@@ -5,11 +5,31 @@ import java.util.List;
 import java.util.Objects;
 
 public class Produto {
+    private static long sequenciaId = 0L;
     private long idProduto;
     private String nome;
     private double precoCusto;
     private Categoria categoria;
 
+     public Produto(String nome, double precoCusto, Categoria categoria) {
+        
+        Objects.requireNonNull(nome, "O nome da categproa deve ser não nulo");
+        
+        if(nome.isBlank()){
+            throw new IllegalArgumentException("Insira um nome válido para a categoria.");
+        }
+        
+        if(precoCusto <= 0 || precoCusto == Double.NaN){
+            throw new IllegalArgumentException("O percentual de lucro deve ser um valor positivo");
+        }
+        
+        Objects.requireNonNull(categoria, "A categoria do produto deve ser não nula");  
+        
+        this.idProduto = sequenciaId;
+        this.nome = nome;
+        this.precoCusto = precoCusto;
+        this.categoria = categoria;
+    }
     public Produto(long idProduto, String nome, double precoCusto, Categoria categoria) {
         
         Objects.requireNonNull(idProduto, "O código identificador da categoria deve ser não nulo.");
@@ -26,7 +46,7 @@ public class Produto {
         Objects.requireNonNull(categoria, "A categoria do produto deve ser não nula");  
         
         
-        
+        sequenciaId++;
         this.idProduto = idProduto;
         this.nome = nome;
         this.precoCusto = precoCusto;
@@ -77,6 +97,10 @@ public class Produto {
     
     public double getPercentualLucro(){
         return this.categoria.getPercentualLucro();
+    }
+    
+    public double getPrecoVendaAtual(){
+        return Double.valueOf(Math.round(((precoCusto) * ( 1 + (getPercentualLucro()/100)))*100)/100);
     }
     
     

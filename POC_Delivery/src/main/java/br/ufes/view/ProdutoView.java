@@ -1,5 +1,6 @@
 package br.ufes.view;
 
+import br.ufes.model.Categoria;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -30,13 +31,22 @@ public class ProdutoView extends javax.swing.JFrame {
         lblPrecoCusto = new javax.swing.JLabel();
         txtPrecoCusto = new javax.swing.JTextField();
         lblCategoriaProduto = new javax.swing.JLabel();
-        cmbCategoriaProduto = new javax.swing.JComboBox<>();
+        try {
+            cmbCategoriaProduto =(javax.swing.JComboBox)java.beans.Beans.instantiate(getClass().getClassLoader(), "br/ufes/view.ProdutoView_cmbCategoriaProduto");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
         jLabel1 = new javax.swing.JLabel();
         txtMargemLucro = new javax.swing.JTextField();
         lblPrecoVenda = new javax.swing.JLabel();
         txtPrecoVenda = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnVisualizarHistoricoPrecos = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,8 +59,6 @@ public class ProdutoView extends javax.swing.JFrame {
         txtPrecoCusto.addActionListener(this::txtPrecoCustoActionPerformed);
 
         lblCategoriaProduto.setText("Categoria do produto:");
-
-        cmbCategoriaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Margem de lucro (%):");
 
@@ -109,6 +117,13 @@ public class ProdutoView extends javax.swing.JFrame {
 
         btnFechar.setText("Fechar");
 
+        btnEditar.setText("Editar");
+
+        btnVisualizarHistoricoPrecos.setText("Visualizar histórico de preços");
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,21 +135,32 @@ public class ProdutoView extends javax.swing.JFrame {
                         .addComponent(pnlProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 290, Short.MAX_VALUE)
                         .addComponent(btnSalvar)
                         .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)
+                        .addGap(18, 18, 18)
                         .addComponent(btnFechar)
-                        .addGap(33, 33, 33))))
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnVisualizarHistoricoPrecos)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnVisualizarHistoricoPrecos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(btnFechar))
+                    .addComponent(btnFechar)
+                    .addComponent(btnEditar)
+                    .addComponent(btnCancelar))
                 .addGap(35, 35, 35))
         );
 
@@ -145,14 +171,21 @@ public class ProdutoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoCustoActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<String> cmbCategoriaProduto;
+    private javax.swing.JButton btnVisualizarHistoricoPrecos;
+    private javax.swing.JComboBox<Categoria> cmbCategoriaProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCategoriaProduto;
     private javax.swing.JLabel lblNomeProduto;
@@ -173,7 +206,7 @@ public class ProdutoView extends javax.swing.JFrame {
         return btnSalvar;
     }
 
-    public JComboBox<String> getCmbCategoriaProduto() {
+    public JComboBox<Categoria> getCmbCategoriaProduto() {
         return cmbCategoriaProduto;
     }
 
@@ -193,6 +226,21 @@ public class ProdutoView extends javax.swing.JFrame {
         return txtPrecoVenda;
     }
 
+    public JButton getBtnEditar() {
+        return btnEditar;
+    }
+
+    public JButton getBtnVisualizarHistoricoPrecos() {
+        return btnVisualizarHistoricoPrecos;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+    
+    
+
+    
     
     
 }
